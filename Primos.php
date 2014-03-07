@@ -1,6 +1,6 @@
-<?PHP
+﻿<?PHP
 
-$numero=49;
+$numero=97;
 
 if ($numero==1) {
 	echo "El numero $numero no es primo";  //El 1 no es primo aunque sí cumple la condición matemática para serlo
