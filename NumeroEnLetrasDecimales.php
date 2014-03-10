@@ -1,6 +1,6 @@
 <?PHP
 
-$numero=6784920.001443;
+$numero=0.77;
 
 function LeeNumero($cantidad) {
 
@@ -31,12 +31,12 @@ $Centenas=array("ciento","doscientos","trescientos","cuatrocientos","quinientos"
 			$cantidad=$cantidad%10;
 		}
 	}
-	if ($cantidad>0 && $cantidad<10) {
+	if ($cantidad>=1 && $cantidad<10) {
 		echo $UnoADiez[$cantidad-1];	
 	}
 }
 
-if($numero==0){
+if($numero<1){
 	echo "cero";
 }
 
@@ -62,27 +62,20 @@ if ($numero>999){
 }
 
 LeeNumero($numero);
-$numero=$numero-floor($numero);
-echo $numero;
+
+$numero=number_format($numero-floor($numero),2);
 
 if($numero>0){
-	echo " con ";
-	}
-	
-while ($numero!=floor($numero)){
+	echo " coma ";
 	if(floor($numero*10)<1){
 		echo "cero ";
+		$decimales=number_format($numero*100,1);
+		LeeNumero($decimales);
 	}
-	$numero=$numero*10;
+	else{
+		$decimales=number_format($numero*100,2);
+		LeeNumero($decimales);
 	}
-
-/*while ($numero>0){
-	$milesimas=floor($numero*1000);
-	$numero=$numero*1000-$milesimas;
-	LeeNumero($milesimas);
-	echo " ";
-	echo $numero;
-	}
-	*/
+}
 
 ?>
