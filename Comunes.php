@@ -1,56 +1,57 @@
 <?PHP
 
-$num1=3;
-$num2=10;
-$num3=13;
+$num1=72;
+$num2=50;
+$num3=20;
 
 function descomponer($cantidad){
-	$descomposicion[0:$cantidad]=0;
-}
 
-/*for($i=2;$i<=$num1;$i++){
-	$divisoresNum1[$i-2]=0;
-}
-
-for($i=2;$i<=$num1;$i++){
-	echo $divisoresNum1[$i-2];
-}
-
-for($i=2;$i<=$num2;$i++){
-	$divisoresNum2[$i-2]=0;
-}
-
-for($i=2;$i<=$num3;$i++){
-	$divisoresNum3[$i-2]=0;
-}
-
-for($i=2;$i<=$num1;$i++){
-	if($num1%$i==0){
-		$num1=$num1/$i;
-		$divisoresNum1[$i-2]++;
+	for($i=2;$i<=$cantidad;$i++){
+		$descomposicion[$i]=0;
 	}
-}
 
+	$divisor=2;
 
-
-for($i=2;$i<=$num2;$i++){
-	if($num2%$i==0){
-		$num2=$num2/$i;
-		$divisoresNum2[$i-2]++;
+	while($cantidad>1){
+		if(($cantidad%$divisor)==0){
+			$descomposicion[$divisor]++;
+			$cantidad=$cantidad/$divisor;
+		}
+		else{
+			$divisor++;
+		}
 	}
-}
-for($i=2;$i<=$num2;$i++){
-	echo $divisoresNum2[$i-2]." ";
+
+	return $descomposicion;
 }
 
-for($i=2;$i<=$num3;$i++){
-	if($num3%$i==0){
-		$num3=$num3/$i;
-		$divisoresNum3[$i-2]++;
-	}
+$Factores1=descomponer($num1);
+$Factores2=descomponer($num2);
+$Factores3=descomponer($num3);
+
+$MCD=1;
+for($i=2;$i<=min($num1,$num2,$num3);$i++){
+	$MCD=$MCD*pow($i,min($Factores1[$i],$Factores2[$i],$Factores3[$i]));
 }
-for($i=2;$i<=$num3;$i++){
-	echo $divisoresNum3[$i-2]." ";
-}*/
+
+echo "El Maximo Comun Divisor de $num1, $num2 y $num3 es $MCD <br>";
+
+
+$mcm=1;
+for($i=2;$i<=max($num1,$num2,$num3);$i++){
+	if ($i>$num1){
+		$Factores1[$i]=0;
+	}
+	if ($i>$num2){
+		$Factores2[$i]=0;
+	}
+	if ($i>$num3){
+		$Factores3[$i]=0;
+	}
+
+	$mcm=$mcm*pow($i,max($Factores1[$i],$Factores2[$i],$Factores3[$i]));
+}
+
+echo "El minimo comun multiplo de $num1, $num2 y $num3 es $mcm";
 
 ?>
